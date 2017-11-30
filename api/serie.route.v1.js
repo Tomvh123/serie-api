@@ -1,0 +1,57 @@
+const express = require('express');
+const routes = express.Router();
+const mongodb = require('../config/dbMongo');
+const series = require('../model/serie');
+
+routes.get('/series', function(req, res) {
+    res.contentType('application/json');
+    series.find({})
+        .then((series) => {
+            res.status(200).send(series);
+        })
+        .catch((error) => res.status(400).json(error));
+});
+
+routes.get('/series/:id', function(req, res) {
+    res.contentType('application/json');
+    const id = req.param('id');
+    console.log(id);
+    series.find({_id: id})
+        .then((series) => {
+            res.status(200).send(series);
+        })
+        .catch((error) => res.status(400).json(error));
+});
+
+routes.post('/series', function(req, res) {
+    const seriesProps = req.body;
+
+    series.create(seriesProps)
+        .then((series) => {
+            res.status(200).send(series)
+        })
+        .catch((error) => res.status(400).json(error))
+});
+
+
+routes.put('/series/:id', function(req, res) {
+    res.contentType('application/json');
+    const serieId = req.params.id;
+    const serieProps = req.body;
+
+    series.findByIdAndUpdate({_id: serieId}, serieProps)
+        .then(()=> series.findById({_id: serieId}))
+        .then(serie => res.send(serie))
+        .catch((error) => res.status(400).json(error))
+
+});
+
+routes.delete('/series/:id', function(req, res) {
+    const id = req.param('id');
+    series.findByIdAndRemove(id)
+        .then((status) => res.status(200).send(status))
+        .catch((error) => res.status(400).json(error))
+});
+
+
+module.exports = routes;
