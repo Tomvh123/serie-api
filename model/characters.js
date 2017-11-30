@@ -7,9 +7,11 @@ const CharacterSchema = new Schema({
         require: true
     },
     description: String,
-    actor: []
+    actor: [{
+        type: Schema.Types.ObjectId,
+        ref: 'actor'
+    }]
 });
-
 
 
 module.exports = CharacterSchema;

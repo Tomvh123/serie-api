@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const CharacterSchema = require('./characters');
+const Actor = require('./actors');
 
 
 
@@ -23,9 +24,17 @@ const SerieSchema = new Schema({
 
 const Serie = mongoose.model('serie', SerieSchema);
 
+
+
+
+
+
+
+
 Serie.count({}, function (err, count) {
-    if(count < 2) {
+    if(count < 10) {
         console.log('serie toevoegen...')
+
         const serie = new Serie({
             name: 'Arrow',
             description:'Spoiled billionaire playboy Oliver Queen ' +
@@ -43,7 +52,38 @@ Serie.count({}, function (err, count) {
 
             creators: ['nothing1', 'nothing2'],
 
-        }).save();
+        });
+
+
+
+        const actor = new Actor({
+
+            name: 'Stephen Amell',
+            description: 'Actor on Arrow',
+            imagePath: 'http.dsjfakdjf.png'
+        });
+
+        const actor2 = new Actor({
+
+            name: 'Stephen Amell2',
+            description: 'Actor on Arrow',
+            imagePath: 'http.dsjfakdjf.png'
+        });
+
+
+
+
+
+
+        serie.characters[0].actor.push(actor);
+        serie.characters[0].actor.push(actor);
+        serie.characters[0].actor.push(actor2);
+        console.log(serie);
+
+
+        actor.save();
+        actor2.save();
+        serie.save();
 
     }
 });
