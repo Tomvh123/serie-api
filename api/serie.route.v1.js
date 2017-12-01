@@ -2,11 +2,15 @@ const express = require('express');
 const routes = express.Router();
 const mongodb = require('../config/dbMongo');
 const series = require('../model/serie');
+const mongoose = require('mongoose');
+
+
 
 routes.get('/series', function(req, res) {
     res.contentType('application/json');
     series.find({})
         .then((series) => {
+        console.log(series[0].characters[0]);
             res.status(200).send(series);
         })
         .catch((error) => res.status(400).json(error));

@@ -3,9 +3,6 @@ const Schema = mongoose.Schema;
 const CharacterSchema = require('./characters');
 const Actor = require('./actors');
 
-
-
-
 const SerieSchema = new Schema({
    name: {
        type: String,
@@ -20,23 +17,17 @@ const SerieSchema = new Schema({
     creators: []
 
 });
-//console.log(CharacterSchema);
+
 
 const Serie = mongoose.model('serie', SerieSchema);
 
 
-
-
-
-
-
-
 Serie.count({}, function (err, count) {
-    if(count < 10) {
+    if(count < 2) {
         console.log('serie toevoegen...')
 
         const serie = new Serie({
-            name: 'Arrow',
+            name: 'Arrow' + count,
             description:'Spoiled billionaire playboy Oliver Queen ' +
             'is missing and presumed dead when his yacht is lost at sea. ' +
             'He returns five years later a changed man,' +
@@ -46,47 +37,33 @@ Serie.count({}, function (err, count) {
                 {
                     name: 'The Green Arrow',
                     description: 'Hes green and has a bow and arrow',
-                    actor: []
+                    actors: []
                 }
             ],
 
             creators: ['nothing1', 'nothing2'],
 
         });
-
-
-
         const actor = new Actor({
 
-            name: 'Stephen Amell',
+            name: 'Stephen Amell ' + count,
             description: 'Actor on Arrow',
             imagePath: 'http.dsjfakdjf.png'
         });
 
         const actor2 = new Actor({
 
-            name: 'Stephen Amell2',
+            name: 'Stephen Amell2- ' + count,
             description: 'Actor on Arrow',
             imagePath: 'http.dsjfakdjf.png'
         });
-
-
-
-
-
-
-        serie.characters[0].actor.push(actor);
-        serie.characters[0].actor.push(actor);
-        serie.characters[0].actor.push(actor2);
-        console.log(serie);
-
-
+        serie.characters[0].actors.push(actor);
+        serie.characters[0].actors.push(actor);
+        serie.characters[0].actors.push(actor2);
         actor.save();
         actor2.save();
         serie.save();
 
     }
 });
-
-
 module.exports = Serie;
