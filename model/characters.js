@@ -7,6 +7,7 @@ const CharacterSchema = new Schema({
         require: true
     },
     description: String,
+    imagePath: String,
     actors: [{
         type: Schema.Types.ObjectId,
         ref: 'actor'

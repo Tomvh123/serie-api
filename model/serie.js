@@ -37,6 +37,7 @@ Serie.count({}, function (err, count) {
                 {
                     name: 'The Green Arrow',
                     description: 'Hes green and has a bow and arrow',
+                    imagePath: 'http://assets1.ignimgs.com/2015/09/02/arrow1280jpg-9f7a32_1280w.jpg',
                     actors: []
                 }
             ],
@@ -54,6 +55,7 @@ Serie.count({}, function (err, count) {
                 {
                     name: 'The Flash',
                     description: 'Hes the fastest man alive',
+                    imagePath: 'http://s2.thingpic.com/images/Aq/hhqykKkb7A3W9Lsa1Sb6rmJv.png',
                     actors: []
                 }
             ],
@@ -75,8 +77,8 @@ Serie.count({}, function (err, count) {
             imagePath: 'image'
         });
         serie.characters[0].actors.push(actor);
-        serie.characters[0].actors.push(actor2);
-        serie2.characters[0].actors.push(actor);
+
+
         serie2.characters[0].actors.push(actor2);
         actor.save();
         actor2.save();
