@@ -27,7 +27,7 @@ Serie.count({}, function (err, count) {
         console.log('serie toevoegen...')
 
         const serie = new Serie({
-            name: 'Arrow' + count,
+            name: 'Arrow',
             description:'Spoiled billionaire playboy Oliver Queen ' +
             'is missing and presumed dead when his yacht is lost at sea. ' +
             'He returns five years later a changed man,' +
@@ -39,14 +39,21 @@ Serie.count({}, function (err, count) {
                     description: 'Hes green and has a bow and arrow',
                     imagePath: 'http://assets1.ignimgs.com/2015/09/02/arrow1280jpg-9f7a32_1280w.jpg',
                     actors: []
+                },
+                {
+                    name: 'The Flash',
+                    description: 'Hes the fastest man alive',
+                    imagePath: 'http://s2.thingpic.com/images/Aq/hhqykKkb7A3W9Lsa1Sb6rmJv.png',
+                    actors: []
                 }
+
             ],
 
             creators: ['nothing1', 'nothing2'],
 
         });
         const serie2 = new Serie({
-            name: 'The Flash' + count,
+            name: 'The Flash',
             description:'After being struck by lightning, Barry Allen wakes up from his coma to discover ' +
             'hes been given the power of super speed, ' +
             'becoming the Flash, fighting crime in Central City.',
@@ -57,6 +64,12 @@ Serie.count({}, function (err, count) {
                     description: 'Hes the fastest man alive',
                     imagePath: 'http://s2.thingpic.com/images/Aq/hhqykKkb7A3W9Lsa1Sb6rmJv.png',
                     actors: []
+                },
+                {
+                    name: 'The Green Arrow',
+                    description: 'Hes green and has a bow and arrow',
+                    imagePath: 'http://assets1.ignimgs.com/2015/09/02/arrow1280jpg-9f7a32_1280w.jpg',
+                    actors: []
                 }
             ],
 
@@ -65,21 +78,23 @@ Serie.count({}, function (err, count) {
         });
         const actor = new Actor({
 
-            name: 'Person ' + count,
-            description: 'Actor',
-            imagePath: 'image'
+            name: 'Stephen Amell ' ,
+            description: 'Actor of Arrow',
+            imagePath: 'https://i0.wp.com/www.uselessdaily.com/wp-content/uploads/2016/03/stephen-amell.jpg?resize=1000%2C1000&ssl=1'
         });
 
         const actor2 = new Actor({
 
-            name: 'Stephen Amell2- ' + count,
-            description: 'Actor on Arrow',
-            imagePath: 'image'
+            name: 'Grant Gustin',
+            description: 'Actor of The Flash',
+            imagePath: 'https://pbs.twimg.com/profile_images/620809351284953088/C3njH0Gs.png'
         });
         serie.characters[0].actors.push(actor);
-
+        serie.characters[1].actors.push(actor2);
 
         serie2.characters[0].actors.push(actor2);
+        serie2.characters[1].actors.push(actor);
+
         actor.save();
         actor2.save();
         serie.save();
