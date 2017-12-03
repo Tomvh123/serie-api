@@ -9,7 +9,7 @@ const CharacterSchema = new Schema({
     description: String,
     actors: [{
         type: Schema.Types.ObjectId,
-        ref: 'actors'
+        ref: 'actor'
     }]
 });
 

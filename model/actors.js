@@ -13,6 +13,6 @@ const ActorSchema = new Schema({
     imagePath: String,
 });
 
-const Actor = mongoose.model('actors', ActorSchema);
+const Actor = mongoose.model('actor', ActorSchema);
 
 module.exports = Actor;

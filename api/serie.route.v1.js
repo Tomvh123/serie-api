@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 routes.get('/series', function(req, res) {
     res.contentType('application/json');
     series.find({})
+        .populate('characters.actors')
         .then((series) => {
         console.log(series[0].characters[0]);
             res.status(200).send(series);
@@ -20,7 +21,8 @@ routes.get('/series/:id', function(req, res) {
     res.contentType('application/json');
     const id = req.param('id');
     console.log(id);
-    series.find({_id: id})
+    series.findOne({_id: id})
+        .populate('characters.actors')
         .then((series) => {
             res.status(200).send(series);
         })
