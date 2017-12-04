@@ -10,6 +10,7 @@ routes.get('/series', function(req, res) {
     res.contentType('application/json');
     series.find({})
         .populate('characters.actors')
+        .populate('creators')
         .then((series) => {
         console.log(series[0].characters[0]);
             res.status(200).send(series);
@@ -23,6 +24,7 @@ routes.get('/series/:id', function(req, res) {
     console.log(id);
     series.findOne({_id: id})
         .populate('characters.actors')
+        .populate('creators')
         .then((series) => {
             res.status(200).send(series);
         })

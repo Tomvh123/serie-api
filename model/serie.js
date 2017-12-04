@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const CharacterSchema = require('./characters');
 const Actor = require('./actors');
+const Creator = require('./creators');
 
 const SerieSchema = new Schema({
    name: {
@@ -14,7 +15,9 @@ const SerieSchema = new Schema({
     },
     imagePath: String,
     characters: [CharacterSchema],
-    creators: [],
+    creators: [{
+       type: Schema.Types.ObjectId,
+        ref: 'creator'}],
     genre: [],
     start: {
        type: Date,
@@ -62,7 +65,7 @@ Serie.count({}, function (err, count) {
 
             ],
 
-            creators: ['nothing1', 'nothing2'],
+            creators: [],
             genre: ['action', 'drama' ],
             start: '2010-05-03',
             seasons: 6,
@@ -95,13 +98,20 @@ Serie.count({}, function (err, count) {
                 }
             ],
 
-            creators: ['nothing1', 'nothing2'],
+            creators: [],
             genre: ['action', 'drama' ],
             start: '2010-05-03',
             seasons: 4,
             episodes: 54,
             language: 'English'
 
+        });
+
+        const creator = new Creator({
+            name: 'Greg Berlanti' ,
+            description: 'Some guy fdasssssssssssssssssssssssssssssssssfeafeasssssssssssssfdsafsdfsdfsdf',
+            imagePath: 'https://nl.wikipedia.org/wiki/Greg_Berlanti#/media/File:Greg_Berlanti_cropped.jpg',
+            birthDate: '1950-06-04'
         });
         const actor = new Actor({
 
@@ -123,7 +133,10 @@ Serie.count({}, function (err, count) {
 
         serie2.characters[0].actors.push(actor2);
         serie2.characters[1].actors.push(actor);
+        serie.creators.push(creator);
+        serie2.creators.push(creator);
 
+        creator.save();
         actor.save();
         actor2.save();
         serie.save();
