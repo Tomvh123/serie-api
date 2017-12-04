@@ -14,7 +14,18 @@ const SerieSchema = new Schema({
     },
     imagePath: String,
     characters: [CharacterSchema],
-    creators: []
+    creators: [],
+    genre: [],
+    start: {
+       type: Date,
+        required: true
+    },
+    seasons: Number,
+    episodes: Number,
+    language: String,
+
+
+
 
 });
 
@@ -38,18 +49,27 @@ Serie.count({}, function (err, count) {
                     name: 'The Green Arrow',
                     description: 'Hes green and has a bow and arrow',
                     imagePath: 'http://assets1.ignimgs.com/2015/09/02/arrow1280jpg-9f7a32_1280w.jpg',
-                    actors: []
+                    actors: [],
+                    birthDate: '1950-06-04'
                 },
                 {
                     name: 'The Flash',
                     description: 'Hes the fastest man alive',
                     imagePath: 'http://s2.thingpic.com/images/Aq/hhqykKkb7A3W9Lsa1Sb6rmJv.png',
-                    actors: []
+                    actors: [],
+                    birthDate: '1950-06-04'
                 }
 
             ],
 
             creators: ['nothing1', 'nothing2'],
+            genre: ['action', 'drama' ],
+            start: '2010-05-03',
+            seasons: 6,
+            episodes: 102,
+            language: 'English'
+
+
 
         });
         const serie2 = new Serie({
@@ -63,31 +83,40 @@ Serie.count({}, function (err, count) {
                     name: 'The Flash',
                     description: 'Hes the fastest man alive',
                     imagePath: 'http://s2.thingpic.com/images/Aq/hhqykKkb7A3W9Lsa1Sb6rmJv.png',
-                    actors: []
+                    actors: [],
+                    birthDate: '1950-06-04'
                 },
                 {
                     name: 'The Green Arrow',
                     description: 'Hes green and has a bow and arrow',
                     imagePath: 'http://assets1.ignimgs.com/2015/09/02/arrow1280jpg-9f7a32_1280w.jpg',
-                    actors: []
+                    actors: [],
+                    birthDate: '1950-06-04'
                 }
             ],
 
             creators: ['nothing1', 'nothing2'],
+            genre: ['action', 'drama' ],
+            start: '2010-05-03',
+            seasons: 4,
+            episodes: 54,
+            language: 'English'
 
         });
         const actor = new Actor({
 
             name: 'Stephen Amell ' ,
             description: 'Actor of Arrow',
-            imagePath: 'https://i0.wp.com/www.uselessdaily.com/wp-content/uploads/2016/03/stephen-amell.jpg?resize=1000%2C1000&ssl=1'
+            imagePath: 'https://i0.wp.com/www.uselessdaily.com/wp-content/uploads/2016/03/stephen-amell.jpg?resize=1000%2C1000&ssl=1',
+            birthDate: '1950-06-04'
         });
 
         const actor2 = new Actor({
 
             name: 'Grant Gustin',
             description: 'Actor of The Flash',
-            imagePath: 'https://pbs.twimg.com/profile_images/620809351284953088/C3njH0Gs.png'
+            imagePath: 'https://pbs.twimg.com/profile_images/620809351284953088/C3njH0Gs.png',
+            birthDate: '1950-06-04'
         });
         serie.characters[0].actors.push(actor);
         serie.characters[1].actors.push(actor2);

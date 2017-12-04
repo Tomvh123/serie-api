@@ -11,7 +11,8 @@ const CharacterSchema = new Schema({
     actors: [{
         type: Schema.Types.ObjectId,
         ref: 'actor'
-    }]
+    }],
+    birthDate: Date
 });
 
 

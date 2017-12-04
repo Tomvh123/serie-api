@@ -11,6 +11,7 @@ const ActorSchema = new Schema({
         required: true
     },
     imagePath: String,
+    birthDate: Date
 });
 
 const Actor = mongoose.model('actor', ActorSchema);
