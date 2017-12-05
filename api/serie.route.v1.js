@@ -33,7 +33,7 @@ routes.get('/series/:id', function(req, res) {
 
 routes.post('/series', function(req, res) {
     const seriesProps = req.body;
-
+    console.log(req.body)
     series.create(seriesProps)
         .then((series) => {
             res.status(200).send(series)
