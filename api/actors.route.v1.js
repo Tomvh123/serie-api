@@ -16,7 +16,7 @@ routes.get('/actors', function(req, res) {
 routes.get('/actors/:id', function(req, res) {
     res.contentType('application/json');
     const id = req.param('id');
-    console.log(id);
+
     actors.find({_id: id})
         .then((actors) => {
             res.status(200).send(actors);

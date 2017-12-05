@@ -16,6 +16,6 @@ const CreatorSchema = new Schema({
 
 const Creator = mongoose.model('creator', CreatorSchema);
 
-console.log('werkt')
+
 
 module.exports = Creator;

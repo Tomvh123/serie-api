@@ -21,7 +21,6 @@ routes.get('/series', function(req, res) {
 routes.get('/series/:id', function(req, res) {
     res.contentType('application/json');
     const id = req.param('id');
-    console.log(id);
     series.findOne({_id: id})
         .populate('characters.actors')
         .populate('creators')
@@ -33,7 +32,7 @@ routes.get('/series/:id', function(req, res) {
 
 routes.post('/series', function(req, res) {
     const seriesProps = req.body;
-    console.log(req.body)
+
     series.create(seriesProps)
         .then((series) => {
             res.status(200).send(series)
@@ -46,6 +45,7 @@ routes.put('/series/:id', function(req, res) {
     res.contentType('application/json');
     const serieId = req.params.id;
     const serieProps = req.body;
+    console.log(req.body);
 
     series.findByIdAndUpdate({_id: serieId}, serieProps)
         .then(()=> series.findById({_id: serieId}))
