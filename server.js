@@ -1,13 +1,11 @@
-let http = require('http');
-let express = require('express');
-let bodyParser = require('body-parser');
-let logger = require('morgan');
-let config = require('./config/env/env');
-let serieroute_v1 = require('./api/serie.route.v1');
-let characterroute_v1 = require('./api/characters.route.v1');
-let actorRoute_v1 = require('./api/actors.route.v1');
+var http = require('http');
+var express = require('express');
+var bodyParser = require('body-parser');
+var logger = require('morgan');
+var config = require('./config/env/env');
+var serieroute_v1 = require('./api/serie.route.v1')
 
-let app = express();
+var app = express();
 
 module.exports = {};
 app.use(bodyParser.urlencoded({
@@ -32,12 +30,10 @@ app.use(function (req, res, next) {
 });
 
 app.use('/api/v1', serieroute_v1);
-app.use('/api/v1', characterroute_v1);
-app.use('/api/v1', actorRoute_v1);
 
 app.use(function (err, req, res, next) {
     // console.dir(err);
-    let error = {
+    var error = {
         message: err.message,
         code: err.code,
         name: err.name,
