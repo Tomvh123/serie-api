@@ -45,8 +45,7 @@ routes.put('/series/:id', function(req, res) {
     res.contentType('application/json');
     const serieId = req.params.id;
     const serieProps = req.body;
-    console.log(req.body);
-
+    console.log(serieProps);
     series.findByIdAndUpdate({_id: serieId}, serieProps)
         .then(()=> series.findById({_id: serieId}))
         .then(serie => res.send(serie))
