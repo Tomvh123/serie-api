@@ -2,17 +2,11 @@ const express = require('express');
 const routes = express.Router();
 const mongodb = require('../config/dbMongo');
 const series = require('../model/serie');
-const mongoose = require('mongoose');
-
-
 
 routes.get('/series', function(req, res) {
     res.contentType('application/json');
     series.find({})
-        .populate('characters.actors')
-        .populate('creators')
         .then((series) => {
-        console.log(series[0].characters[0]);
             res.status(200).send(series);
         })
         .catch((error) => res.status(400).json(error));
@@ -21,9 +15,8 @@ routes.get('/series', function(req, res) {
 routes.get('/series/:id', function(req, res) {
     res.contentType('application/json');
     const id = req.param('id');
-    series.findOne({_id: id})
-        .populate('characters.actors')
-        .populate('creators')
+    console.log(id);
+    series.find({_id: id})
         .then((series) => {
             res.status(200).send(series);
         })
@@ -45,7 +38,7 @@ routes.put('/series/:id', function(req, res) {
     res.contentType('application/json');
     const serieId = req.params.id;
     const serieProps = req.body;
-    console.log(serieProps);
+
     series.findByIdAndUpdate({_id: serieId}, serieProps)
         .then(()=> series.findById({_id: serieId}))
         .then(serie => res.send(serie))
