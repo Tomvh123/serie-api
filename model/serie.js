@@ -136,6 +136,8 @@ Serie.count({}, function (err, count) {
         serie.characters.push(character2);
         serie2.characters.push(character2);
         serie2.characters.push(character);
+        serie.creators.push(creator);
+        serie2.creators.push(creator);
 
         character.save();
         character2.save();
