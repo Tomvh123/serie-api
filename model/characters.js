@@ -15,5 +15,7 @@ const CharacterSchema = new Schema({
     birthDate: Date
 });
 
+const Character = mongoose.model('character', CharacterSchema)
 
-module.exports = CharacterSchema;
+
+module.exports = Character;

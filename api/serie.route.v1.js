@@ -3,13 +3,19 @@ const routes = express.Router();
 const mongodb = require('../config/dbMongo');
 const series = require('../model/serie');
 const mongoose = require('mongoose');
+const Actor = require('../model/actors');
 
 
 
 routes.get('/series', function(req, res) {
     res.contentType('application/json');
     series.find({})
-        .populate('characters.actors')
+        .populate({
+            path: 'characters',
+            populate: {
+                path: 'actors',
+                model: 'actor'}
+        })
         .populate('creators')
         .then((series) => {
         console.log(series[0].characters[0]);
@@ -22,7 +28,12 @@ routes.get('/series/:id', function(req, res) {
     res.contentType('application/json');
     const id = req.param('id');
     series.findOne({_id: id})
-        .populate('characters.actors')
+        .populate({
+            path: 'characters',
+            populate: {
+                path: 'actors',
+                model: 'actor'}
+        })
         .populate('creators')
         .then((series) => {
             res.status(200).send(series);
