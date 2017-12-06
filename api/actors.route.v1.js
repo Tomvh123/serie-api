@@ -26,8 +26,8 @@ routes.get('/actors/:id', function(req, res) {
 
 routes.post('/actors', function(req, res) {
     const actorsProps = req.body;
-
-    series.create(actorsProps)
+    // series.create(actorsProps)
+    actors.create(actorsProps)
         .then((actors) => {
             res.status(200).send(actors)
         })
