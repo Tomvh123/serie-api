@@ -5,19 +5,26 @@ const Actor = require('../model/actors');
 
 describe('Reading series out of the database', () => {
     let serie;
+    let character;
+    let actor;
 
     beforeEach((done) => {
         serie = new Serie({ name: 'Test', start: '2015-05-05', description: 'description' });
+        character = new Character({ name: 'Arrow', start: '2015-05-05', description: 'description' });
+        actor = new Actor({ name: 'testActor', start: '2015-05-05', description: 'description' });
+        character.actors.push(actor);
+        serie.characters.push(character);
         serie.save()
             .then(() => done());
 
     });
 
     it('finds all series with a name of Arrow', (done) => {
-        console.log(serie);
-        Serie.find({ name: 'Test' })
-            .then((series) => {console.log(series),
-                assert(series[0]._id.toString() === serie._id.toString());
+        Serie.find({name: 'Test'})
+            .then((series) => {
+                assert(series[0]._id.toString() === serie._id.toString()),
+                    assert(series[0].characters[0].toString() === character._id.toString()),
+                    assert(serie.characters[0].actors[0]._id.toString() === actor._id.toString());
                 done();
             });
     });
@@ -25,7 +32,7 @@ describe('Reading series out of the database', () => {
     it('find a serie with a particular id', (done) => {
         Serie.findOne({ _id: serie._id })
             .then((serie) => {
-                assert(serie.name === 'Test');
+                assert(serie.name === 'Test'),
                 done();
             });
     });
@@ -33,9 +40,12 @@ describe('Reading series out of the database', () => {
 
 describe('Reading characters out of the database', () => {
     let character;
+    let actor;
 
     beforeEach((done) => {
         character = new Character({ name: 'Arrow', start: '2015-05-05', description: 'description' });
+        actor = new Actor({ name: 'testActor', start: '2015-05-05', description: 'description' });
+        character.actors.push(actor);
         character.save()
             .then(() => done());
     });
@@ -43,7 +53,8 @@ describe('Reading characters out of the database', () => {
     it('finds all series with a name of Arrow', (done) => {
         Character.find({ name: 'Arrow' })
             .then((characters) => {
-                assert(characters[0]._id.toString() === character._id.toString());
+                assert(characters[0]._id.toString() === character._id.toString(),
+                assert(characters[0].actors[0].toString() === actor._id.toString()));
                 done();
             });
     });
