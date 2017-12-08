@@ -38,8 +38,14 @@ const SerieSchema = new Schema({
 
 });
 
+SerieSchema.pre('findByIdAndRemove', function(callback){
+    console.log('werkt')
+    this.model('characters').remove({_id: this._id}, callback);
+});
 
 const Serie = mongoose.model('serie', SerieSchema);
+
+
 
 
 Serie.count({}, function (err, count) {
