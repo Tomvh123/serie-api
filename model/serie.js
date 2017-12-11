@@ -24,7 +24,7 @@ const SerieSchema = new Schema({
     creators: [{
        type: Schema.Types.ObjectId,
         ref: 'creator'}],
-    genre: [],
+    genre: String,
     start: {
        type: Date,
         required: true
@@ -62,7 +62,7 @@ Serie.count({}, function (err, count) {
             characters: [],
 
             creators: [],
-            genre: ['action', 'drama' ],
+            genre: 'action',
             start: '2010-05-03',
             seasons: 6,
             episodes: 102,
@@ -80,7 +80,7 @@ Serie.count({}, function (err, count) {
             characters: [],
 
             creators: [],
-            genre: ['action', 'drama' ],
+            genre: 'action',
             start: '2010-05-03',
             seasons: 4,
             episodes: 54,
