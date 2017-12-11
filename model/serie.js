@@ -48,7 +48,7 @@ const Serie = mongoose.model('serie', SerieSchema);
 
 
 
-Serie.count({}, function (err, count) {
+/*Serie.count({}, function (err, count) {
     if(count < 1) {
         console.log('serie toevoegen...')
 
@@ -125,13 +125,13 @@ Serie.count({}, function (err, count) {
             actors: [],
             birthDate: '1950-06-04'
         });
-       /* serie.characters[0].actors.push(actor);
+       /!* serie.characters[0].actors.push(actor);
         serie.characters[1].actors.push(actor2);
 
         serie2.characters[0].actors.push(actor2);
         serie2.characters[1].actors.push(actor);
         serie.creators.push(creator);
-        serie2.creators.push(creator);*/
+        serie2.creators.push(creator);*!/
 
         character.actors.push(actor);
         character.actors.push(actor2);
@@ -154,5 +154,5 @@ Serie.count({}, function (err, count) {
         serie2.save();
 
     }
-});
+});*/
 module.exports = Serie;
