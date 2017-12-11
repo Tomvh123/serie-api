@@ -57,10 +57,19 @@ routes.get('/seriesrel/:genre', function(req, res) {
     session
         .run("MATCH (n)-[:has_genre]->(:Genre {genre: {genreParam}}) return n", {genreParam: genre})
         .then(function(result) {
-            res.status(200).send(result.records);
+            var serieArr = [];
+             console.log(result.records[0]._fields[0].properties.name);
+            result.records.forEach(function (record) {
+               serieArr.push({
+                  _id : record._fields[0].properties.id,
+                   name: record._fields[0].properties.name,
+                   imagePath: record._fields[0].properties.imagePath
+               });
+            });
+            res.status(200).send(serieArr);
 
             session.close();
-        })
+        });
 
 });
 
