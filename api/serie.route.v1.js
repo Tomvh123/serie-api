@@ -48,6 +48,22 @@ routes.post('/seriesneo', function(req, res) {
 
 });*/
 
+routes.get('/seriesrel/:genre', function(req, res) {
+    res.contentType('application/json');
+    const genre = req.param('genre');
+    console.log(genre)
+    var session = driver.session();
+
+    session
+        .run("MATCH (n)-[:has_genre]->(:Genre {genre: {genreParam}}) return n", {genreParam: genre})
+        .then(function(result) {
+            res.status(200).send(result.records);
+
+            session.close();
+        })
+
+});
+
 routes.get('/series', function(req, res) {
     res.contentType('application/json');
     series.find({})
@@ -98,7 +114,7 @@ routes.post('/series', function(req, res) {
             session
                 .run("MATCH (g:Genre {genre: {genreParam}})" +
                     " CREATE(n:Serie {name: {nameParam}, id: {idParam}, imagePath: {imagePathParam}})-[:has_genre]->(g)", {genreParam: genre, nameParam: name, idParam: id, imagePathParam: imagePath }).then(function () {
-                console.log('done neo')
+                console.log('done neo');
                 session.close();
 
             }).catch((error) => console.log(error));
