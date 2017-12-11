@@ -41,6 +41,6 @@
     "gulp-istanbul": "^1.1.2",
     "gulp-mocha": "^4.3.1",
     "mocha": "^3.5.3",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.12.5"
   }
 }
