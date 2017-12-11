@@ -159,6 +159,13 @@ routes.put('/series/:id', function(req, res) {
 
 routes.delete('/series/:id', function(req, res) {
     const id = req.param('id');
+    var session = driver.session();
+    session
+        .run("MATCH (n:Serie {id: {idParam}}) DETACH DELETE n", {idParam:  id})
+        .then(function () {
+            session.close();
+        });
+
     series.findByIdAndRemove(id)
         .then((status) => res.status(200).send(status))
         .catch((error) => res.status(400).json(error))
