@@ -14,9 +14,7 @@ var dburl = process.env.NODE_ENV === 'production' ?
     'mongodb://' + env.dbUser + ':' + env.dbPassword + '@' + env.dbHost + ':' + env.dbPort + '/' + env.dbDatabase :
     'mongodb://localhost/' + env.dbDatabase;
 
-
-
-
+console.log(dburl);
 
 module.exports = {
     env: env,
