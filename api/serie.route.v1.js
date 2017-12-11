@@ -114,7 +114,20 @@ routes.put('/series/:id', function(req, res) {
     const serieProps = req.body;
     series.findByIdAndUpdate({_id: serieId}, serieProps)
         .then(()=> series.findById({_id: serieId}))
-        .then(serie => res.send(serie))
+        .then((serie) => {
+            var session = driver.session();
+            var name = serie.name;
+            var genre = serie.genre;
+            console.log(name);
+            console.log(genre);
+            session
+                .run("MATCH (n:Serie {name: {nameParam}})-[rel:has_genre]->(), (m:Genre {genre: {genreParam}}) DELETE rel CREATE (n)-[:has_genre]->(m)", {nameParam: name, genreParam: genre})
+                .then(function () {
+                    console.log('done neo');
+                    session.close();
+                }).catch((error) => console.log(error));
+            res.send(serie)
+        })
         .catch((error) => res.status(400).json(error))
 
 });
