@@ -6,6 +6,7 @@ let config = require('./config/env/env');
 let serieroute_v1 = require('./api/serie.route.v1');
 let characterroute_v1 = require('./api/characters.route.v1');
 let actorRoute_v1 = require('./api/actors.route.v1');
+var neo4j = require('neo4j-driver').v1;
 
 let app = express();
 
@@ -30,6 +31,8 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 });
+
+
 
 app.use('/api/v1', serieroute_v1);
 app.use('/api/v1', characterroute_v1);
