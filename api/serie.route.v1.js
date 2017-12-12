@@ -6,47 +6,7 @@ const mongoose = require('mongoose');
 const Actor = require('../model/actors');
 const driver = require('../config/neo');
 
-//neo example
-/*var session = driver.session();
-const personName = 'Hans';
-const resultPromise = session.run(
-    'CREATE (a:Person {name: $name}) RETURN a',
-    {name: personName}
-);
 
-resultPromise.then(result => {
-    session.close();
-
-    const singleRecord = result.records[0];
-    const node = singleRecord.get(0);
-
-    console.log(node.properties.name);
-
-    // on application exit:
-    driver.close();
-});*/
-/*
-routes.post('/seriesneo', function(req, res) {
-    res.contentType('application/json');
-    var session = driver.session();
-    var name = req.body.name;
-    var id = req.body._id;
-    var imagePath = req.body.imagePath;
-    var genre = req.body.genre;
-
-    session
-        .run("MATCH (g:Genre {genre: {genreParam}})" +
-            " CREATE(n:Serie{name: {nameParam}, id: {idParam}, imagePath:{imagePathParam}})-[:has_genre]->(g)", {genreParam: genre, nameParam: name, idParam: id, imagePathParam: imagePath })
-        .then(function (result) {
-            res.status(200).send(result)
-            session.close();
-        })
-        .catch(function (error) {
-            console.log(error)
-        });
-
-
-});*/
 
 routes.get('/seriesrel/:genre', function(req, res) {
     res.contentType('application/json');
