@@ -2,7 +2,8 @@ const config = require('./env/env');
 const neo4j = require('neo4j-driver').v1;
 
 var driver = neo4j.driver("bolt://localhost", neo4j.auth.basic("", ""));
-/*var driver = neo4j.driver("https://hobby-gojbbepjgmiigbkediphfial.dbs.graphenedb.com:24780/db/data/", neo4j.auth.basic("serie-graph", "b.piWUERr38SEs.xzDcne55KbpGRA4l"));*/
+
+var driver = neo4j.driver("bolt://hobby-gojbbepjgmiigbkediphfial.dbs.graphenedb.com:24786", neo4j.auth.basic("serie-graph", "b.piWUERr38SEs.xzDcne55KbpGRA4l"));
 
 /*
 var session = driver.session();
